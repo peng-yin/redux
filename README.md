@@ -26,7 +26,7 @@ this.props.dispatch(counterCreator.increment())
 
 在初始化时，createStore会主动触发一次dispach，它的action.type是系统内置的INIT，所以在reducer中不会匹配到任何开发者自定义的action.type，它走的是switch中default的逻辑，目的是为了得到初始化的状态。
 
-当然也可以手动指定initialState，这里做了一层判断，当initialState没有定义时，才会dispatch，而在源码中是都会执行一次dispatch，笔者认为没有必要，这是一次多余的操作。因为这个时候，监听流中没有注册函数，走了一遍reducer中的default逻辑，得到新的state和initialState是一样的。
+当然也可以手动指定initialState，这里做了一层判断，当initialState没有定义时，才会dispatch，而在源码中是都会执行一次dispatch，我认为没有必要，这是一次多余的操作。因为这个时候，监听流中没有注册函数，走了一遍reducer中的default逻辑，得到新的state和initialState是一样的。
 
 第三个参数enhancer只有在使用中间件时才会用到，通常情况下搭配applyMiddleware来使用，它可以增强dispatch的功能，如常用的logger和thunk，都是增强了dispatch的功能。
 
